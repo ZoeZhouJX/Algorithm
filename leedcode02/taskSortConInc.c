@@ -10,7 +10,7 @@ int main()
 {
     srand(time(NULL));
     int arr[size];
-    memset(arr, 0, sizeof(size));
+    memset(arr, 0, sizeof(arr));
    
     for(int idx = 0; idx < size; idx++)
     {

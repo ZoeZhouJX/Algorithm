@@ -7,14 +7,15 @@
 
 int main()
 {
-    int target;
+    int target = 0;
     scanf("%d",&target);
-    int size;
+    int size = 0;
     printf("输入数组大小：");
     scanf("%d",&size);
 
     // int *array = (int*)malloc(sizeof(int)*size);
     int array[size];
+    memset(array, 0, sizeof(array));
     int pos = 0;
 
     srand(time(NULL));
@@ -31,8 +32,8 @@ int main()
         {
             //原地 空间复杂度0（1）
             array[pos] = array[idx];
+            printf("%d ", array[pos]);
             pos++;
-            printf("%d ", array[pos]);          
         }
     }
     printf("\n");
