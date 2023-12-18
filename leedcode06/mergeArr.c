@@ -42,7 +42,7 @@ int main()
     int *mergeOrderNums(int *num1, int num1Size, int *num2, int num2Size, int* newSize)
     {
         int arrayLen = num1Size + num2Size;
-        int *newArray = malloc(sizeof(int) * arrayLen);
+        int *newArray = (int *)malloc(sizeof(int) * arrayLen);
 
         //必须是== 不能是= 因为=是赋值操作
         if(newArray == NULL)
