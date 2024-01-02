@@ -20,6 +20,74 @@ int printArray(int *array, int length)
     return ret;
 }
 
+static int findBaseValPos(int *array, int start, int end)
+{
+    int ret = 0;
+
+    end--;
+
+    /* 基准值 */
+    int baseValPos = array[start];
+    while (start < end)
+    {
+        while (start < end)
+        {
+            if (array[end] < baseValPos)
+            {
+                array[start] = array[end];
+                start++;
+                break;
+            }
+            else
+            {
+                end--;
+            }
+        }
+
+        while (start < end)
+        {
+            if (array[start] > baseValPos)
+            {
+                array[end] = array[start];
+                end--;
+                break;
+            }
+            else
+            {
+                start++;
+            }
+        }
+    } // 退出条件：start = end
+
+    array[start] = baseValPos;
+
+    return start;
+}
+
+int quickSort(int *array, int start, int end)
+{
+    int ret = 0;
+    if (array == NULL)
+    {
+        return ret;
+    }
+
+    /* 递归 必须考虑结束条件
+       如果strat == end 说明数组只有一个元素 直接返回 */
+    if (start >= end)
+    {
+        return ret;
+    }
+
+    int baseValPos = findBaseValPos(array, start, end);
+    /* 对基准值左边排序 */
+    quickSort(array, start, baseValPos);
+    /* 对基准值右边排序 */
+    quickSort(array, baseValPos + 1, end);
+
+    return ret;
+}
+
 /* 返回值：1表示存在 0表示不存在 */
 int binarySearchAppointValPos(int *array, int length, int val)
 {
@@ -63,12 +131,12 @@ int main()
     }
 
     int length = sizeof(buffer) / sizeof(buffer[0]);
-    quickSort(buffer, length);
+    quickSort(buffer, 0, length);
     printArray(buffer, length);
     printf("\n");
 
     
-    int val = 30;
+    int val = 22;
     int isExist = binarySearchAppointValPos(buffer, length, val);
     printf("isExist:%d\n", isExist);
 
