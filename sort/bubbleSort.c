@@ -10,6 +10,8 @@ int swap(int *val1, int *val2)
     return ret;
 }
 
+
+
 /* 数组做函数参数会自动弱化成指针 */
 int printArray(int *array, int arraySize)
 {
@@ -85,6 +87,8 @@ void bubbleSort03(int *array, int length)
         end = sortedIndex;
     }
 }
+
+
 
 int main()
 {
