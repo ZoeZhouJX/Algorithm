@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define NULL_PTR 0
+
 /* 选择排序：相较于冒泡排序，减少了交换的次数 */
 /* 时间复杂度也是O(n^2) */
 
@@ -60,6 +62,11 @@ int printArray(int *array, int length)
 /* 选择排序 */
 int selectSort(int *array, int length) 
 {
+    if(array == NULL)
+    {
+        return NULL_PTR;
+    }
+
     int ret = 0;
 
     int minValue = 0;

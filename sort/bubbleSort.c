@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+# define NULL_PTR 0
+
 /* 交换两个整数 */
 int swap(int *val1, int *val2)
 {
@@ -28,6 +30,11 @@ int printArray(int *array, int arraySize)
 /* 时间复杂度：O(n^2) */
 void bubbleSort01(int *array, int length)
 {
+    if (array == NULL)
+    {
+        return NULL_PTR;
+    }
+
     for (int end = length; end > 0; end--)
     {
         for (int begin = 1; begin < end; begin++)
@@ -44,6 +51,11 @@ void bubbleSort01(int *array, int length)
 /* 优化1 */
 void bubbleSort02(int *array, int length)
 {
+    if (array == NULL)
+    {
+        return NULL_PTR;
+    }
+
     int sorted = 1;
     for (int end = length; end > 0; end--)
     {
@@ -69,6 +81,11 @@ void bubbleSort02(int *array, int length)
 /* 优化2 */
 void bubbleSort03(int *array, int length)
 {
+    if (array == NULL)
+    {
+        return NULL_PTR;
+    }
+
     int sortedIndex = 0;
     for (int end = length; end > 0; end--)
     {

@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define NULL_PTR 0
+
 /* 插入排序 */
 
 #if 0
@@ -56,6 +58,11 @@ int printArray(int *array, int arraySize)
 
 int insertSort01(int *array, int length)
 {
+    if(array == NULL)
+    {
+        return NULL_PTR;
+    }
+
     int ret = 0;
 
     int cpy = 0;
@@ -80,6 +87,11 @@ int insertSort01(int *array, int length)
 
 int insertSort02(int *array, int length)
 {
+    if(array == NULL)
+    {
+        return NULL_PTR;
+    }
+    
     int ret = 0;
 
     int copyNum = 0;
