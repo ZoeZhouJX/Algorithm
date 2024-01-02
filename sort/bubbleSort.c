@@ -16,12 +16,13 @@ int swap(int *val1, int *val2)
 int printArray(int *array, int arraySize)
 {
     int ret = 0;
+
     for (int idx = 0; idx < arraySize; idx++)
     {
         printf("array[%d] = %d\n", idx, array[idx]);
     }
-    return ret;
     
+    return ret;
 }
 
 /* 时间复杂度：O(n^2) */

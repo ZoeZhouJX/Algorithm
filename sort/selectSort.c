@@ -4,44 +4,45 @@
 /* 时间复杂度也是O(n^2) */
 
 
-// #define BUFFER_SIZE 7
+#if 0
+#define BUFFER_SIZE 7
 
-// int main()
-// {
-//     int arr[BUFFER_SIZE] = {1, 30, 24, 5, 58, 12, 39};
+int main()
+{
+    int arr[BUFFER_SIZE] = {1, 30, 24, 5, 58, 12, 39};
 
-//     int minIndex = 0;
+    int minIndex = 0;
 
-//     for (int idx = 0; idx < BUFFER_SIZE; idx++)
-//     {
-//         int min = arr[idx];
-//         for (int jdx = idx + 1; jdx < BUFFER_SIZE; jdx++)
-//         {
-//             if (arr[jdx] < min)
-//             {
-//                 min = arr[jdx];
-//                 minIndex = jdx;
-//             }
-//         }
+    for (int idx = 0; idx < BUFFER_SIZE; idx++)
+    {
+        int min = arr[idx];
+        for (int jdx = idx + 1; jdx < BUFFER_SIZE; jdx++)
+        {
+            if (arr[jdx] < min)
+            {
+                min = arr[jdx];
+                minIndex = jdx;
+            }
+        }
 
-//         if (arr[idx] > min)
-//         {
-//             int temp = arr[idx];
-//             arr[idx] = min;
-//             arr[minIndex] = temp;
-//         }
-//     }
+        if (arr[idx] > min)
+        {
+            int temp = arr[idx];
+            arr[idx] = min;
+            arr[minIndex] = temp;
+        }
+    }
     
-//     for (int ndx = 0; ndx < BUFFER_SIZE; ndx++)
-//     {
-//         printf("%d\t", arr[ndx]);
-//     }
-//     printf("\n");
+    for (int ndx = 0; ndx < BUFFER_SIZE; ndx++)
+    {
+        printf("%d\t", arr[ndx]);
+    }
+    printf("\n");
 
-//     return 0;
-// }
+    return 0;
+}
 
-
+#else
 
 /* 数组做函数参数会自动弱化成指针 */
 int printArray(int *array, int length)
@@ -100,3 +101,5 @@ int main()
 
     return 0;
 }
+
+#endif
