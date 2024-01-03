@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "dynamicArrayStack.h"
 
-int stringIsValid(char *string, int length)
+int stringIsValid(char *string)
 {
 #if 0
     int false = 0;
@@ -88,21 +88,23 @@ int stringIsValid(char *string, int length)
 #else
     int false = 0;
     int true = 1;
+
     if (string == NULL)
     {
         return false;
     }
-    if (length % 2 != 0)
-    {
-        return false;
-    }
+
+    // if (length % 2 != 0)
+    // {
+    //     return false;
+    // }
 
     dynamicArrayStack stack;
     dynamicArrayStackInit(&stack);
 
     char *val = NULL;
 
-    for (int idx = 0; idx < length; idx++)
+    for (int idx = 0; string[idx] != '\0'; idx++)
     {
         if ((string[idx] == '(') || (string[idx] == '{') || (string[idx] == '['))
         {
@@ -137,17 +139,19 @@ int stringIsValid(char *string, int length)
     {
         return false;
     }
-        
+
+    dynamicArrayStackDestroy(&stack);
 
 #endif
 }
 
 int main()
 {
-    char string[] = {'(', '{', '[', '{', '}', ']'};
-    int length = sizeof(string) / sizeof(string[0]);
+    char string[] = {'(', '[', ']', ')', '(', '[', '{', '}', ']', ')'};
+    // char *string = NULL;
+    // int length = sizeof(string) / sizeof(string[0]);
 
-    int isValid = stringIsValid(string, length);
+    int isValid = stringIsValid(string);
     if (isValid)
     {
         printf("true\n");
