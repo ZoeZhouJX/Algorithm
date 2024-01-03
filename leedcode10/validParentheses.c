@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "dynamicArrayStack.h"
-#include "doubleLinkListQueue.h"
 
 int stringIsValid(char *string, int length)
 {
+#if 0
     int false = 0;
     int true = 1;
     if (string == NULL)
@@ -85,12 +85,55 @@ int stringIsValid(char *string, int length)
         doubleLinkListQueueDestroy(queue);
         return true;
     }
-    
+#else
+    int false = 0;
+    int true = 1;
+    if (string == NULL)
+    {
+        return false;
+    }
+    if (length % 2 != 0)
+    {
+        return false;
+    }
+
+    dynamicArrayStack stack;
+    dynamicArrayStackInit(&stack);
+
+    char *val = NULL;
+
+    for (int idx = 0; idx < length; idx++)
+    {
+        if ((string[idx] == '(') || (string[idx] == '{') || (string[idx] == '['))
+        {
+            dynamicArrayStackPush(&stack, (void *)(string + idx));
+        }
+        else
+        {
+            if (dynamicArrayStackIsEmpty(&stack))
+            {
+                return false;
+            }
+
+            dynamicArrayStackTop(&stack, (void **)&val);
+            if (string[idx] == ')' && *val == '(' || string[idx] == '}' && *val == '{' || string[idx] == ']' && *val == '[')
+            {
+                dynamicArrayStackPop(&stack);
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+
+#endif
 }
 
 int main()
 {
-    char string[] = {'(', ')', '[', '{', '}', ']'};
+    char string[] = {'(', '{', '[', '{', '}', ']'};
     int length = sizeof(string) / sizeof(string[0]);
 
     int isValid = stringIsValid(string, length);
