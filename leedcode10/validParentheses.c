@@ -16,7 +16,7 @@ int stringIsValid(char *string, int length)
     }
 
     int flag = -1;
-
+    int Index = 0;
     if (flag == -1)
     {
         for (int pos = 0; pos < length; pos += 2)
@@ -24,15 +24,18 @@ int stringIsValid(char *string, int length)
             if (((string[pos + 1] - string[pos] == 1) || (string[pos + 1] - string[pos] == 2)) && pos < length)
             {
                 flag = -1;
-                return true;
             }
             else
             {
                 flag = -2;
+                Index = pos;
                 break;
             }
         }
-        
+        if (flag == -1)
+        {
+            return true;
+        }    
     }
     
     if (flag == -2)
@@ -43,17 +46,17 @@ int stringIsValid(char *string, int length)
         DoubleLinkListQueue *queue;
         doubleLinkListQueueInit(&queue);
 
-        for (int idx = 0; idx < (length >> 1); idx++)
+        for (int idx = Index; idx < (((length - Index) >> 1) + Index); idx++)
         {
             dynamicArrayStackPush(&stack, (void *)(string + idx));
         }
-        for (int jdx = (length >> 1); jdx < length; jdx++)
+        for (int jdx = (((length - Index) >> 1) + Index); jdx < length; jdx++)
         {
             doubleLinkListQueuePush(queue, (void *)(string + jdx));
         }
 
-        int *val1 = NULL;
-        int *val2 = NULL;
+        char *val1 = NULL;
+        char *val2 = NULL;
         while (!dynamicArrayStackIsEmpty(&stack) && !doubleLinkListQueueIsEmpty(queue))
         {
             dynamicArrayStackTop(&stack, (void **)&val1);
@@ -87,7 +90,7 @@ int stringIsValid(char *string, int length)
 
 int main()
 {
-    char string[] = {'(', '{', '[', ']', '}', ')'};
+    char string[] = {'(', ')', '[', '{', '}', ']'};
     int length = sizeof(string) / sizeof(string[0]);
 
     int isValid = stringIsValid(string, length);
