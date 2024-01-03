@@ -114,16 +114,19 @@ int stringIsValid(char *string, int length)
             {
                 return false;
             }
-
-            dynamicArrayStackTop(&stack, (void **)&val);
-            if (string[idx] == ')' && *val == '(' || string[idx] == '}' && *val == '{' || string[idx] == ']' && *val == '[')
-            {
-                dynamicArrayStackPop(&stack);
-            }
             else
             {
-                return false;
+                dynamicArrayStackTop(&stack, (void **)&val);
+                if ((string[idx] == ')' && *val == '(') || (string[idx] == '}' && *val == '{') || (string[idx] == ']' && *val == '['))
+                {
+                    dynamicArrayStackPop(&stack);
+                }
+                else
+                {
+                    return false;
+                }
             }
+            
         }
     }
     return true;
