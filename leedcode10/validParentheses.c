@@ -129,7 +129,15 @@ int stringIsValid(char *string, int length)
             
         }
     }
-    return true;
+    if (dynamicArrayStackIsEmpty(&stack))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+        
 
 #endif
 }
